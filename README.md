@@ -1,6 +1,6 @@
 # Configur
 
-Simply set configuration for you ruby class or module
+Simply set configuration for your ruby class or module
 
 ## How to install it ?
 

@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 
 # File: configur.rb
-# Time-stamp: <2014-11-25 23:31:52 pierre>
+# Time-stamp: <2014-11-26 00:04:32 pierre>
 # Copyright (C) 2014 Pierre Lecocq
 # Description: Configur gem module
 
 # Configur module
 module Configur
   # Version constant
-  VERSION = [0, 1, 0].join '.'
+  VERSION = [1, 0, 1].join '.'
 
   # Configur
   def configur(&block)
