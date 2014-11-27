@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # File: simple.rb
-# Time-stamp: <2014-11-25 23:44:45 pierre>
+# Time-stamp: <2014-11-27 16:27:50 pierre>
 # Copyright (C) 2014 Pierre Lecocq
 # Description: Class test for configur gem
 
@@ -9,20 +9,22 @@ require_relative '../lib/configur'
 
 # Define an awesome class
 class MyClass
-  extend Configur
+  include Configur
 end
 
+my_class = MyClass.new
+
 # Configure MyClass
-MyClass.configur do |config|
+my_class.configur do |config|
   config.debug = true
   config.name = 'myclass'
 end
 
 # Get the name
-puts MyClass.get_config :name
+puts my_class.get_config :name
 
 # Override and extend MyClass config
-MyClass.configur do |config|
+my_class.configur do |config|
   config.name = 'myawesomeapp'
   config.db_host = 'localhost'
   config.db_name = 'mydb'
@@ -35,10 +37,10 @@ MyClass.configur do |config|
 end
 
 # Get some config values
-puts MyClass.get_config :debug
-puts MyClass.get_config :name
-puts MyClass.get_config :db_host
-puts MyClass.get_config :redis
+puts my_class.get_config :debug
+puts my_class.get_config :name
+puts my_class.get_config :db_host
+puts my_class.get_config :redis
 
 # Get all configs as an Hash
-puts MyClass.get_configs
+puts my_class.get_configs

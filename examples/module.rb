@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # File: module.rb
-# Time-stamp: <2014-11-25 23:38:13 pierre>
+# Time-stamp: <2014-11-27 15:57:36 pierre>
 # Copyright (C) 2014 Pierre Lecocq
 # Description: Module test for configur gem
 

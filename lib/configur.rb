@@ -1,22 +1,24 @@
 #!/usr/bin/env ruby
 
 # File: configur.rb
-# Time-stamp: <2014-11-26 00:04:32 pierre>
+# Time-stamp: <2014-11-27 16:26:10 pierre>
 # Copyright (C) 2014 Pierre Lecocq
 # Description: Configur gem module
 
 # Configur module
 module Configur
   # Version constant
-  VERSION = [1, 0, 1].join '.'
+  VERSION = [1, 1, 0].join '.'
 
   # Configur
   def configur(&block)
-    @@_configur_data ||= {}
+    @@_cdata ||= {}
+    @@_oid = self.object_id
 
     def block.method_missing(m, *args, &block)
-      name = m.to_s.gsub '=', ''
-      Configur.set_config name, args[0]
+      name = m.to_s
+      super if name[-1] != '='
+      Configur.set_config @@_oid, name.gsub('=', ''), args[0]
     end
 
     yield block
@@ -24,16 +26,17 @@ module Configur
 
   # Get all configs
   def get_configs
-    @@_configur_data || {}
+    @@_cdata[self.object_id] || {}
   end
 
   # Get a config value
   def get_config(name)
-    @@_configur_data[name.to_sym] || nil
+    @@_cdata[self.object_id][name.to_sym] || nil
   end
 
   # Set a config value
-  def self.set_config(name, value)
-    @@_configur_data[name.to_sym] = value
+  def self.set_config(oid, name, value)
+    @@_cdata[oid] ||= {}
+    @@_cdata[oid][name.to_sym] = value
   end
 end

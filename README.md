@@ -22,23 +22,41 @@ No explanation, just an example to show you how easy it is:
 
     require 'configur'
 
-    class MyClass
+    module MyModule
       extend Configur
     end
 
-    MyClass.configur do |config|
+    MyModule.configur do |config|
       config.debug = true
       config.app_name = 'myawesomeapp'
     end
 
-And it also works for modules. Nevermind
+For a class, here is the corresponding snippet
+
+    require 'configur'
+
+    class MyClass
+      include Configur
+    end
+
+    my_class = MyClass.new
+
+    my_class.configur do |config|
+      config.debug = true
+      config.app_name = 'myawesomeapp'
+    end
 
 ## Methods
 
 After configuring your class or module, you can "query" with the following methods:
 
-    puts MyClass.get_config :app_name
-    puts MyClass.get_configs
+    puts MyModule.get_config :app_name
+    puts MyModule.get_configs
+
+or
+
+    puts my_class.get_config :app_name
+    puts my_class.get_configs
 
 Easy, isn't it?
 
